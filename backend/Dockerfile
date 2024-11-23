@@ -8,9 +8,7 @@ WORKDIR /usr/src/app
 RUN apt-get update && apt-get install -y \
     qpdf \
     libreoffice\
-    libreoffice-converter\
-    --no-install-recommends && \
-    apt-get clean && rm -rf /var/lib/apt/lists/*
+    libreoffice-convert\
 
 # Copy package.json and package-lock.json to the container
 COPY package*.json ./
