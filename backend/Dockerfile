@@ -5,16 +5,16 @@ FROM node:23-alpine3.19
 WORKDIR /usr/src/app
 
 # Install system dependencies (qpdf and libreoffice)
-RUN apt-get update && apt-get install -y \
+RUN apk add --no-cache \
     qpdf \
-    libreoffice\
-    libreoffice-convert\
+    libreoffice \
+    bash
 
 # Copy package.json and package-lock.json to the container
 COPY package*.json ./
 
 # Install Node.js dependencies
-RUN npm install
+RUN npm install --production
 
 # Copy the rest of the application code to the container
 COPY . .
