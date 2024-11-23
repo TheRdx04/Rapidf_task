@@ -57,7 +57,7 @@ export default function MediaToolAttachment() {
     }
 
     try {
-      const response = await fetch('http://localhost:5000/docxtopdf', {
+      const response = await fetch('http://13.49.0.167:5000/docxtopdf', {
         method: 'POST',
         body: formData,
       })

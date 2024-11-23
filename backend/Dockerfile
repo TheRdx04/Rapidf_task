@@ -3,7 +3,8 @@ FROM node:23-alpine3.19
 
 # Set the working directory inside the container
 WORKDIR /usr/src/app
-
+RUN mkdir uploads
+RUN mkdir files
 # Install system dependencies (qpdf and libreoffice)
 RUN apk add --no-cache \
     qpdf \
@@ -16,11 +17,11 @@ COPY package*.json ./
 # Install Node.js dependencies
 RUN npm install --production
 
-# Copy the rest of the application code to the container
+
 COPY . .
 
-# Expose the port the app will run on
+
 EXPOSE 5000
 
-# Run the app
+
 CMD ["node", "index.js"]

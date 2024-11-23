@@ -1,9 +1,9 @@
 const express = require("express");
 const cors = require("cors");
 const path = require("path");
-const upload = require("./utils/multer"); // Middleware for handling file uploads
-const convertDocxToPDF = require("./utils/converter"); // Utility to convert DOCX to PDF
-const addPasswordToPDF = require("./utils/pdfpass"); // Utility to add a password to PDF
+const upload = require("./utils/multer");
+const convertDocxToPDF = require("./utils/converter"); 
+const addPasswordToPDF = require("./utils/pdfpass"); 
 const fs = require("fs").promises;
 
 const app = express();
