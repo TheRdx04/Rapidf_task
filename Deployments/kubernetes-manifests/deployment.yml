@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: vivekgarg200/:v1
+        image: vivekgarg200/frontend-deployment:v1
         ports:
         - containerPort: 8080
