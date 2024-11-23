@@ -7,9 +7,8 @@ WORKDIR /usr/src/app
 # Install system dependencies (qpdf and libreoffice)
 RUN apt-get update && apt-get install -y \
     qpdf \
-    libreoffice-core \
-    libreoffice-writer \
-    libreoffice-calc \
+    libreoffice\
+    libreoffice-converte\
     --no-install-recommends && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
