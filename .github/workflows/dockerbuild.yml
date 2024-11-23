@@ -29,11 +29,11 @@ jobs:
       # Step 4: Build Docker image
       - name: Build Docker image
         run: |
-          docker build -t TheRdx04/rapidtask:${{ env.VERSION }} ./backend
-          docker tag TheRdx04/rapidtask:${{ env.VERSION }} TheRdx04/rapidtask:latest
+          docker build -t vivekgarg200/rapidtask:${{ env.VERSION }} ./backend
+          docker tag vivekgarg200/rapidtask:${{ env.VERSION }} vivekgarg200/rapidtask:latest
 
       # Step 5: Push Docker image
       - name: Push Docker image
         run: |
-          docker push TheRdx04/rapidtask:${{ env.VERSION }}
-          docker push TheRdx04/rapidtask:latest
+          docker push vivekgarg200/rapidtask:${{ env.VERSION }}
+          docker push vivekgarg200/rapidtask:latest
