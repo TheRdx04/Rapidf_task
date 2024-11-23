@@ -8,7 +8,7 @@ WORKDIR /usr/src/app
 RUN apt-get update && apt-get install -y \
     qpdf \
     libreoffice\
-    libreoffice-converte\
+    libreoffice-converter\
     --no-install-recommends && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
