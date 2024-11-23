@@ -6,7 +6,7 @@ const convertDocxToPDF = require("./utils/converter");
 const addPasswordToPDF = require("./utils/pdfpass");
 
 const app = express();
-const port = 3000;
+const port = 5000;
 
 app.use(cors());
 app.use(express.json());
@@ -14,12 +14,19 @@ app.use(express.urlencoded({ extended: true }));
 
 app.post("/docxtopdf", upload.single("file"), async (req, res) => {
     try {
-        
         const { password } = req.body;
 
         if (!req.file) {
             return res.status(400).json({ message: "No file uploaded" });
         }
+
+        // Extract metadata
+        const metadata = {
+            name: req.file.originalname,
+            size: `${(req.file.size / 1024).toFixed(2)} KB`, // size in KB with 2 decimals
+            mimetype: req.file.mimetype,
+            format: path.extname(req.file.originalname).replace(".", ""), // file extension without the dot
+        };
 
         // Remove the .docx extension
         const baseName = path.basename(req.file.originalname, path.extname(req.file.originalname));
@@ -35,15 +42,19 @@ app.post("/docxtopdf", upload.single("file"), async (req, res) => {
             ? await addPasswordToPDF(convertedPDFPath, passwordProtectedPath, password)
             : convertedPDFPath;
 
-        // Step 3: Return the file for download
-        return res.download(finalPath, () => {
-            console.log("File sent successfully");
+        // Step 3: Return metadata and file download path to the frontend
+        return res.status(200).json({
+            message: "File processed successfully",
+            metadata,
+            downloadUrl: `http://localhost:${port}/files/${path.basename(finalPath)}`,
         });
     } catch (error) {
         console.error(error);
         return res.status(500).json({ message: error.message });
     }
 });
+
+app.use("/files", express.static(path.join(__dirname, "files"))); // Serve files statically
 
 app.listen(port, () => {
     console.log(`Server is listening on port ${port}`);
