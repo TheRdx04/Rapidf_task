@@ -5,9 +5,6 @@ const path = require("path");
 const addPasswordToPDF = async (inputPath, outputPath, password) => {
     return new Promise(async (resolve, reject) => {
         try {
-            console.log("Input Path:", inputPath);
-            console.log("Output Path:", outputPath);
-            console.log("Password:", password);
 
             // Ensure file exists using absolute path
             const absoluteInputPath = path.resolve(inputPath);
